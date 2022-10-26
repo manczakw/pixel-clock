@@ -1,0 +1,2 @@
+- Replaced transparent 0.12mm layer with separate part, in order to make printing easier (if the first layer gets mesed up, you can quickly reprint it and snap in)
+- Changed angles of led's grid for better light effect.
