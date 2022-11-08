@@ -1,5 +1,5 @@
 Smart LED Pixel Clock
+![20221108_142552](https://user-images.githubusercontent.com/69490354/200576930-0454e7df-52c6-4369-9ac2-a90b0cb0850a.jpg)
 ![Vievports](https://user-images.githubusercontent.com/69490354/198850487-1f862d2e-8bc8-41ce-8225-a11d962c8fdf.png)
 
 
-![Zrzut ekranu 2022-10-23 153655](https://user-images.githubusercontent.com/69490354/197396754-5edb2170-b586-4ea7-bd11-0b507d96c571.jpg)
