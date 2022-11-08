@@ -34,12 +34,42 @@ def TwoRows():
         pixels[i] = (0,0,0)
     time.sleep(5)
 
+def FourRows():
+    for i in range(256):
+        R = random.randint(0, 10)
+        G = random.randint(0, 10-R)
+        B = random.randint(0, 10-G-R)
+        pixels[i] = (R,G,B)
+    time.sleep(5)
+    for i in range(256):
+        pixels[i] = (0,0,0)
+    time.sleep(5)
+
+def six():
+    
+       
+        pixels[2] = (125,125,125)
+        pixels[3] = (125,125,125)
+        pixels[4] = (125,125,125)
+        pixels[13] = (125,125,125)
+        pixels[18] = (125,125,125)
+        pixels[19] = (125,125,125)
+        pixels[20] = (125,125,125)
+        pixels[11] = (125,125,125)
+        pixels[21] = (125,125,125)
+        pixels[22] = (125,125,125)
+        pixels[9] = (125,125,125)
+        pixels[6] = (125,125,125)
+
 def BlackDown():
     for i in range(NumOfLeds):  
         pixels[i] = (0,0,0) 
 
 while True:
-    OneHot()
+    #FourRows()
+    #pixels[0] = (255,255,255)
+    #pixels[12] = (255,255,255)
+    six()
 
 
 
