@@ -66,10 +66,11 @@ def BlackDown():
         pixels[i] = (0,0,0) 
 
 while True:
+    OneHot()
     #FourRows()
     #pixels[0] = (255,255,255)
     #pixels[12] = (255,255,255)
-    six()
+    #six()
 
 
 

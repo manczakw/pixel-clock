@@ -101,58 +101,63 @@ digits =[
 def setLedMatrix (row, column,value):
    pixels[LookUpTable[row][column]] = value
 
-def setTime( hh,h,mm,m,brightnes):
+def setTime( hh,h,mm,m,colour):
    for vertical in range(-2,3):
       for horizontal in range(-1,2):
 
-        pixel = brightnes*digits[hh][vertical+2][horizontal+1] 
-        setLedMatrix (3+vertical, 7+horizontal, 
-        (pixel,pixel,pixel))
+        r = digits[hh][vertical+2][horizontal+1] * colour[0]
+        g = digits[hh][vertical+2][horizontal+1] * colour[1]
+        b = digits[hh][vertical+2][horizontal+1] * colour[2]
+     
+        setLedMatrix (3+vertical, 7+horizontal,(r,g,b))
 
-        pixel = brightnes*digits[h][vertical+2][horizontal+1]
-        setLedMatrix (3+vertical, 11+horizontal, 
-        (pixel,pixel,pixel))
+        r = digits[h][vertical+2][horizontal+1] * colour[0]
+        g = digits[h][vertical+2][horizontal+1] * colour[1]
+        b = digits[h][vertical+2][horizontal+1] * colour[2]
+              
+        setLedMatrix (3+vertical, 11+horizontal,(r,g,b))
 
-        pixel = brightnes*digits[mm][vertical+2][horizontal+1]
-        setLedMatrix (3+vertical, 19+horizontal,
-        (pixel,pixel,pixel))
+             
+        r = digits[mm][vertical+2][horizontal+1] * colour[0]
+        g = digits[mm][vertical+2][horizontal+1] * colour[1]
+        b = digits[mm][vertical+2][horizontal+1] * colour[2]
+        setLedMatrix (3+vertical, 19+horizontal,(r,g,b))
 
-        pixel = brightnes*digits[m][vertical+2][horizontal+1]
-        setLedMatrix (3+vertical, 23+horizontal,
-        (pixel,pixel,pixel))
+       
 
+        r = digits[m][vertical+2][horizontal+1] * colour[0]
+        g = digits[m][vertical+2][horizontal+1] * colour[1]
+        b = digits[m][vertical+2][horizontal+1] * colour[2]
+     
+        setLedMatrix (3+vertical, 23+horizontal,(r,g,b))
+
+def updateCollon(second,colour):
+   if(second%2 == 0):
+      setLedMatrix(2,15,colour)
+      setLedMatrix(4,15,colour)
+   else:
+      setLedMatrix(2,15,(0,0,0))
+      setLedMatrix(4,15,(0,0,0))
+ 
 
 
 while True:
  now = datetime.now()
- #print(now)
+
  hh = now.hour//10
  h = now.hour%10
  mm = now.minute//10
  m = now.minute%10
- #print(hh," ",h," ",mm," ",m," ")
- setTime(hh,h,mm,m,10)
- if(now.second%2 == 0):
-   setLedMatrix(2,15,(10,10,10))
-   setLedMatrix(4,15,(10,10,10))
+ s = now.second
+ 
+#-------------------------------------------
+
+ if(now.hour <= 7):
+   colour = (1,0,0)
  else:
-   setLedMatrix(2,15,(0,0,0))
-   setLedMatrix(4,15,(0,0,0))
+   colour = (15,15,15)
+
+ setTime(hh,h,mm,m,colour)
+ updateCollon(s,colour)
  
  time.sleep(0.1)
-   
-   
-
-
-
-
-
-
-
-
-            
-          
-       
-    
-   
-
