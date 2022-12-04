@@ -98,6 +98,12 @@ digits =[
    [0,0,0]]
 ]
 
+digitsCenter = [
+   [3,7], #hh
+   [3,11], #h
+   [3,19], [3,17], #mm & alternative mm 
+   [3,23], [3,21] #m & alternative m
+]
 def setLedMatrix (row, column,value):
    pixels[LookUpTable[row][column]] = value
 
@@ -105,31 +111,44 @@ def setTime( hh,h,mm,m,colour):
    for vertical in range(-2,3):
       for horizontal in range(-1,2):
 
-        r = digits[hh][vertical+2][horizontal+1] * colour[0]
-        g = digits[hh][vertical+2][horizontal+1] * colour[1]
-        b = digits[hh][vertical+2][horizontal+1] * colour[2]
-     
-        setLedMatrix (3+vertical, 7+horizontal,(r,g,b))
+        if (hh == 0):
+            r=0
+            g=0
+            b=0
+
+        else:
+            r = digits[hh][vertical+2][horizontal+1] * colour[0]
+            g = digits[hh][vertical+2][horizontal+1] * colour[1]
+            b = digits[hh][vertical+2][horizontal+1] * colour[2]
+                     
+        setLedMatrix (digitsCenter[0][0]+vertical, digitsCenter[0][1]+horizontal,(r,g,b))
 
         r = digits[h][vertical+2][horizontal+1] * colour[0]
         g = digits[h][vertical+2][horizontal+1] * colour[1]
         b = digits[h][vertical+2][horizontal+1] * colour[2]
               
-        setLedMatrix (3+vertical, 11+horizontal,(r,g,b))
+        setLedMatrix (digitsCenter[1][0]+vertical, digitsCenter[1][1]+horizontal,(r,g,b))
 
-             
+
         r = digits[mm][vertical+2][horizontal+1] * colour[0]
         g = digits[mm][vertical+2][horizontal+1] * colour[1]
         b = digits[mm][vertical+2][horizontal+1] * colour[2]
-        setLedMatrix (3+vertical, 19+horizontal,(r,g,b))
-
+        
+        if(mm == 1):
+            setLedMatrix (digitsCenter[3][0]+vertical, digitsCenter[3][1]+horizontal,(r,g,b))
+        else:
+            setLedMatrix (digitsCenter[2][0]+vertical, digitsCenter[2][1]+horizontal,(r,g,b))
        
-
         r = digits[m][vertical+2][horizontal+1] * colour[0]
         g = digits[m][vertical+2][horizontal+1] * colour[1]
         b = digits[m][vertical+2][horizontal+1] * colour[2]
+
+        if(mm == 1):
+            setLedMatrix (digitsCenter[5][0]+vertical, digitsCenter[5][1]+horizontal,(r,g,b))
+        else:
+            setLedMatrix (digitsCenter[4][0]+vertical, digitsCenter[4][1]+horizontal,(r,g,b))
      
-        setLedMatrix (3+vertical, 23+horizontal,(r,g,b))
+        
 
 def updateCollon(second,colour):
    if(second%2 == 0):
@@ -149,6 +168,7 @@ while True:
  mm = now.minute//10
  m = now.minute%10
  s = now.second
+ 
  
 #-------------------------------------------
 
